@@ -1,0 +1,158 @@
+body{
+    font-family: 'Roboto',FontAwesome, sans-serif;
+    color: #5c5c5d;
+    background-color: #ffffff;
+    background: url('../images/background_image.png') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
+.btn{
+    text-shadow: 0 0px 0px;
+}
+
+#login{
+    margin: 8%;
+}
+
+header{
+    text-align: center;
+    background: #008c55;
+    margin: 0px;
+    height: 88px;
+    color: #ffffff;
+    border-top: 3px solid #114b5f;
+}
+
+.header h2{
+    margin: 0px;
+    padding-top: 20px;
+    line-height: 20px;
+    margin-top: 8px;
+}
+
+.header span{
+    margin: 0px;
+    font-size: 9px;
+}
+
+.button{
+    width: 100% !important;
+    margin: 15px 0px 20px 0px !important;
+    background: #008c55;
+    border: 1px solid #008c55;
+    color: #ffffff;
+    height: 55px !important;
+    padding-top: 7px;
+    border-radius: 0px;
+    box-shadow: 0 3px 2px #0D210D;
+}
+
+.button:hover,
+.button:focus,
+.button:active:hover{
+    background: #008c55;
+    border: 1px solid #008c55;
+    color: #c6dabf;
+    outline: transparent;
+}
+
+#signup{
+    margin: 2%;    
+}
+
+.checkBox{
+    color: #ffffff;
+    margin: 10px 0px 0px 0px;
+}
+
+.checkBox a{
+    color: #008c55 !important;
+    padding: 0px;
+}
+
+.checkBox input{
+    margin: 0px 0px 0px 0px;
+    height:18px;
+    width: 18px;
+}
+
+#forgotPassword{
+    margin: 10%;    
+}
+
+.content p{
+    line-height: 130%;
+    padding: 0px 0px 10px 0px;
+}
+
+.content{
+    min-height: 300px;
+    color: #ffffff;
+    padding: 40px 0px 20px 0px;
+    background: #114b5f;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.content .inputBox{
+    height: 50px;
+    font-family: 'Roboto',FontAwesome, sans-serif;
+    padding-left: 20px;
+    border-radius: 0px;
+}
+
+.content .inputBox:focus {
+    border: transparent;
+}
+
+.content .input-group {
+    margin: 20px 0px 20px 0px;
+}
+
+.content .input-group-addon {
+    border-radius: 0px;
+    font-size: 16px;
+}
+
+.footer{
+    background-color: #114b5f;
+    min-height: 68px;
+    color: #ffffff;
+    padding: 25px 0px 25px 0px;
+    text-align: center;
+}
+
+.footer span{
+    font-weight: 400;
+    margin: 0px;
+    color: #8c8c8c;
+}
+
+#login a,
+#signup a,
+#forgotPassword a{
+    color: #008c55;
+}
+
+#login a:hover,
+#signup a:hover,
+#forgotPassword a:hover{
+    color: #008c55;
+}
+
+.copyright{
+    font-size: 14px;
+    color: #8c8c8c;
+    text-align: center;
+}
+
+.copyright ul{
+    padding: 0px;
+}
+
+.copyright li{
+    list-style-type: none;
+}

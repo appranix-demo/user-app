@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Application</title>
+        <link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon'/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="ui/js/jquery-3.1.0.js"></script>
+        <script src="ui/js/jquery.validate.min.js"></script>
+        <script src="ui/js/additional-methods.min.js"></script>
+        <script src="ui/js/bootstrap.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href="ui/css/bootstrap.min.css" rel="stylesheet">
+        <link href="ui/css/style.css" type="text/css" rel="stylesheet">
+        <script src="ui/js/application.js"></script>
+        <link href="ui/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header>
+            <div class="navBar">
+                <nav class="navbar navbar-default navbar-fixed-top card-6">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle fontAswm collapsedNav" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand brandName" href="#">UserApp</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <!--    <ul class="nav navbar-nav borderAfter">
+                                                            <li class="borderBefore"><a href="javascript:showSection('#userList')" class="navButton"><i class="fa fa-user"></i>Users</a>
+                                                                </li>
+                                <li class="borderBefore"><a href="javascript:showSection('#partnerList')" class="navButton"><i class="fa fa-tags"></i>Partners</a>
+                                </li>
+                                <li class="borderBefore"><a href="javascript:showSection('#accountList')" class="navButton">Accounts</a>
+                                </li>
+                            </ul>-->
+                            <div class="navbar-right rightDiv">
+                                <!--                                <form class="navbar-form navbar-left" role="search">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                            <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                        </div>
+                                    </form>
+                                    <ul class="nav navbar-nav iconList">
+                                        <li class="borderBefore"><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"><span class="badge">2</span></i></a></li>
+                                        <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i></a></li>
+                                    </ul> -->
+                                <!-- <ul class="nav navbar-nav">
+                                    <li class="dropdown borderBefore">
+                                        <a href="#" class="dropdown-toggle fontAswm navImgBtn" data-toggle="dropdown"><img src="images/Avathar.png"><span id="currentUser">Admin</span><i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                         						<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i>What's New</a></li>
+                                                <li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i>System Notification</a></li>
+                                                <li><a href="#"><i class="fa fa-forumbee" aria-hidden="true"></i>Something else here</a></li>
+                                                <li class="divider"></li>
+                                            <li><a href="#" onclick="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div id="confirmModal" class="modal fade" role='dialog'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+                        <h4 class="modal-title">Delete </h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <span id='confirmButton'></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="dashboard">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="userList" class="card-4">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="active">Users</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <div id="usersParent">
+                            </div>
+                            <div id="createUser" class="button col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a href="javascript:showSection('#newUser')" class="btn fontAswm">
+                                    <i class="fa fa-user-plus"></i>
+                                    </br>
+                                    Create User
+                                </a>
+                            </div>
+                            <!--                            <form class="listSearch col-lg-6 col-md-6 col-sm-6 col-xs-6" role="search">
+                                    <div class="input-group pull-right">
+                                        <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form> -->
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover card-5 tableHover tableList" id="userTable">
+                                <thead>
+                                    <tr class="card-5">
+                                        <th><a onclick="sort(0, '#userTable')">Sl.No</a></th>
+                                        <th><a onclick="sort(1, '#userTable')">NAME</a></th>
+                                        <th><a onclick="sort(2, '#userTable')">EMAIL</a></th>
+                                        <th><a onclick="sort(3, '#userTable')">ADDRESS</a></th>
+                                        <th><a onclick="sort(4, '#userTable')">JOINED DATE</a></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userTBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="newUser">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:showSection('#userList')">Users</a></li>
+                    <li class="active">Create User</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="AlertMessage text-center" style="font-size:16px;"></div>
+                            <form id="userForm" class="form-horizontal customForm">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <div class="row">
+                                            <h4>User Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="user_fname" name="user_fname" type="text" placeholder="Firstname *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="user_lname" name="user_lname" type="text" placeholder="Lastname *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="user_email" name="user_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="user_username" name="user_username" type="text" placeholder="Username *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-lg-offset-2">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-default btnGreen">Submit</button>
+                                                <button type="reset" onclick="showSection('#userList')" class="btn btn-default">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

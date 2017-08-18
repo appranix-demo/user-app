@@ -1,0 +1,42 @@
+spring:
+  profiles.active: default
+---
+spring:
+  profiles: default
+  # Datasource Configuration
+spring.datasource:
+    driverClassName: org.postgresql.Driver
+    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_POSTGRES_PORT:5432}/${DB_POSTGRES_DB:userappdb}?currentSchema=${DB_POSTGRES_SCHEMA:public}"
+    username: ${DB_POSTGRES_USER:postgres}
+    password: ${DB_POSTGRES_PASSWORD:password}
+spring.jpa:
+        # Specify the DBMS
+        database: PostgreSQL
+        # Show or not log for each sql query
+        show-sql: false
+        # Hibernate settings are prefixed with spring.jpa.hibernate.*
+        hibernate:
+            ddl-auto: validate # validate | update | create | create-drop
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            show_sql: false
+            format_sql: true
+---
+
+#This profile include in memory database configuration and disable flyway
+spring:
+  profiles: test
+spring.datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:MY_APP;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:db/migration/test/init_tests.sql';
+    username: sa
+    password:
+spring.jpa:
+    hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.H2Dialect
+flyway.enabled : false
+#flyway.schemas : PUBLIC
+
+# Flyway configuartion
+flyway.baseline-on-migrate: true

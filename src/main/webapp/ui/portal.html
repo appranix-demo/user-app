@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Appranix - Partner Portal</title>
+        <link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon'/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="js/jquery-3.1.0.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <script src="js/script.js"></script>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body class="wrapper">
+        <header>
+            <div class="navBar">
+                <nav class="navbar navbar-default navbar-fixed-top card-6">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle fontAswm collapsedNav" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand brandName" href="#">Appranix</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav borderAfter">
+                                <!--                                <li class="borderBefore"><a href="javascript:showSection('#userList')" class="navButton"><i class="fa fa-user"></i>Users</a>
+                                                                </li>-->
+                                <li class="borderBefore"><a href="javascript:showSection('#partnerList')" class="navButton"><i class="fa fa-tags"></i>Partners</a>
+                                </li>
+                                <li class="borderBefore"><a href="javascript:showSection('#accountList')" class="navButton">Accounts</a>
+                                </li>
+                            </ul>
+                            <div class="navbar-right rightDiv">
+                                <!--                                <form class="navbar-form navbar-left" role="search">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                            <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                        </div>
+                                    </form>
+                                    <ul class="nav navbar-nav iconList">
+                                        <li class="borderBefore"><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"><span class="badge">2</span></i></a></li>
+                                        <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i></a></li>
+                                    </ul> -->
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown borderBefore">
+                                        <a href="#" class="dropdown-toggle fontAswm navImgBtn" data-toggle="dropdown"><img src="images/Avathar.png"><span id="currentUser">Admin</span><i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <!-- 						<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i>What's New</a></li>
+                                                <li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i>System Notification</a></li>
+                                                <li><a href="#"><i class="fa fa-forumbee" aria-hidden="true"></i>Something else here</a></li>
+                                                <li class="divider"></li> -->
+                                            <li><a href="#" onclick="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Delete dialog box -->
+        <div id="confirmModal" class="modal fade" role='dialog'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Delete </h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <span id='confirmButton'></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="dashboard">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="userList" class="card-4">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="active">Users</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <div id="usersParent">
+                            </div>
+                            <div id="createUser" class="button col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a href="javascript:showSection('#newUser')" class="btn fontAswm">
+                                    <i class="fa fa-user-plus"></i>
+                                    </br>
+                                    Create User
+                                </a>
+                            </div>
+                            <!--                            <form class="listSearch col-lg-6 col-md-6 col-sm-6 col-xs-6" role="search">
+                                    <div class="input-group pull-right">
+                                        <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form> -->
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover card-5 tableHover tableList" id="userTable">
+                                <thead>
+                                    <tr class="card-5">
+                                        <th><a onclick="sort(0, '#userTable')">Sl.No</a></th>
+                                        <th><a onclick="sort(1, '#userTable')">NAME</a></th>
+                                        <th><a onclick="sort(2, '#userTable')">USERNAME</a></th>
+                                        <th><a onclick="sort(3, '#userTable')">EMAIL</a></th>
+                                        <th><a onclick="sort(4, '#userTable')">JOINED DATE</a></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userTBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="newUser">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:showSection('#userList')">Users</a></li>
+                    <li class="active">Create User</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="AlertMessage text-center" style="font-size:16px;"></div>
+                            <form id="userForm" class="form-horizontal customForm">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <div class="row">
+                                            <h4>User Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="user_fname" name="user_fname" type="text" placeholder="Firstname *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="user_lname" name="user_lname" type="text" placeholder="Lastname *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="user_email" name="user_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="user_username" name="user_username" type="text" placeholder="Username *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                        <input id="user_password" name="user_password" type="password" placeholder="Password *" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="user_cfmpassword" name="user_cfmpassword" type="password" placeholder="Confirm Password *" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-lg-offset-2">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-default btnGreen">Submit</button>
+                                                <button type="reset" onclick="showSection('#userList')" class="btn btn-default">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="partnerList" class="card-4">
+            <div id="sucess" class="text-center responseText"></div>
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="active">Partners</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <div class="button col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a href="javascript:showSection('#newPartner')" class="btn fontAswm">
+                                    <i class="fa fa-user-plus"></i>
+                                    </br>
+                                    Create Partner
+                                </a>
+                            </div>
+                            <!--                            <form class="listSearch col-lg-6 col-md-6 col-sm-6 col-xs-6" role="search">
+                                    <div class="input-group pull-right">
+                                        <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form> -->
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover card-5 tableHover tableList" id="partnerTable">
+                                <thead>
+                                    <tr class="card-5">
+                                        <th><a onclick="sort(0, '#partnerTable')">Sl.No</a></th>
+                                        <th><a onclick="sort(1, '#partnerTable')">NAME</a></th>
+                                        <th><a onclick="sort(2, '#partnerTable')">JOINED DATE</a></th>
+                                        <th><a onclick="sort(3, '#partnerTable')">EMAIL</a></th>
+                                        <th><a onclick="sort(4, '#partnerTable')">PHONE</a></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="partnerTBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="newPartner">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="javascript:showSection('#partnerList')">Partners</a>
+                    </li>
+                    <li class="active">Create Partner</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <form id="partnerForm" class="form-horizontal customForm">
+                                <div class="col-lg-4 col-lg-push-8">
+                                    <div class="form-group uploadImg">
+                                        <div class="col-lg-6">
+                                            <div class="upload-image-form">
+                                                <h4>Upload Image</h4>
+                                                <div class="formmessage text-center responseText"></div>
+                                                <div class="col-lg-10 image-preview-div" style="display: none">
+                                                    <img class="preview-img img-responsive" id="partner_preview-img" alt="No Logo" src="images/noimage">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <label class="btn btn-default selectBtn">
+                                                            <span>Add Logo</span>
+                                                            <input type="file" name="file" class="file" style="display: none;">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-lg-pull-4">
+                                    <div class="col-lg-11 col-lg-offset-1">
+                                        <div class="row">
+                                            <h4>Corporate Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                                                        <input id="partner_name" name="partner_name" type="text" placeholder="Partner Name *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                        <input id="partner_phonenumber" name="partner_phonenumber" type="text" placeholder="Phone number *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="partner_email" name="partner_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Corporate Address</h4>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="partner_streetAddress" name="partner_streetAddress" type="text" placeholder="Street Address *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="partner_city" name="partner_city" type="text" placeholder="City *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="partner_state" name="partner_state" type="text" placeholder="State *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="partner_country" name="partner_country" type="text" placeholder="Country *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="partner_zipcode" name="partner_zipcode" type="text" placeholder="Zipcode" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Admin Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="partner_ad_name" name="partner_ad_name" type="text" placeholder="Name *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="partner_ad_email" name="partner_ad_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="partner_ad_username" name="partner_ad_username" type="text" placeholder="Username *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                        <input id="partner_ad_password" name="partner_ad_password" type="password" placeholder="Password *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                        <input id="partner_ad_cfmpassword" name="partner_ad_cfmpassword" type="password" placeholder="Confirm Password *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-default btnGreen">Submit</button>
+                                        <button type="reset" onclick="showSection('#partnerList')" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="accountList" class="card-4">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="active">Accounts</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <div class="button col-lg-6">
+                                <a href="javascript:showSection('#newAccount')" class="btn fontAswm">
+                                    <i class="fa fa-user-plus"></i>
+                                    </br>
+                                    Create Account
+                                </a>
+                            </div>
+                            <!--                        	<form class="pull-right listSearch col-lg-6" role="search">
+                                    <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search" name="searchbox">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                    <i class="fa fa-search"></i>
+                                            </button>
+                                            </span>
+                                    </div>
+                                    </form> -->
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover card-5 tableHover tableList" id="accountTable">
+                                <thead>
+                                    <tr class="card-5">
+                                        <th><a onclick="sort(0, '#accountTable')">Sl.No</a></th>
+                                        <th><a onclick="sort(1, '#accountTable')">NAME</a></th>
+                                        <th><a onclick="sort(2, '#accountTable')">JOINED DATE</a></th>
+                                        <th><a onclick="sort(3, '#accountTable')">EMAIL</a></th>
+                                        <th><a onclick="sort(4, '#accountTable')">PHONE</a></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="accountTBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="newAccount">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="javascript:homePage()"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="javascript:showSection('#accountList')">Accounts</a>
+                    </li>
+                    <li class="active">Create Account</li>
+                </ol>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="AlertMessage text-center" style="font-size:16px; display: none"></div>
+                            <form id="accountForm" class="form-horizontal customForm">
+                                <div class="col-lg-4 col-lg-push-8">
+                                    <div class="form-group uploadImg">
+                                        <div class="col-lg-6">
+                                            <div class="upload-image-form">
+                                                <h4>Upload Image</h4>
+                                                <div class="formmessage text-center responseText"></div>
+                                                <div class="col-lg-10 image-preview-div" style="display: none">
+                                                    <img class="preview-img img-responsive" id="account_preview-img" alt="No Logo" src="images/noimage">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <label class="btn btn-default selectBtn">
+                                                            <span>Add Logo</span>
+                                                            <input type="file" name="file" class="file" style="display: none;">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-lg-pull-4">
+                                    <div class="col-lg-11 col-lg-offset-1">
+                                        <div id="partner-select-div" class="row">
+                                            <h4>Partner</h4>
+                                            <div class="input-group col-lg-6"> 
+                                                <select id="partner-select" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Corporate Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                                                        <input id="account_orgname" name="account_orgname" type="text" placeholder="Account Name *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                        <input id="account_phonenumber" name="account_phonenumber" type="text" placeholder="Phone number *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="account_email" name="account_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <!--                                                <div class="col-lg-6">
+                                                                                                    <div class="input-group col-lg-12">
+                                                                                                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                                                                                        <input id="account_billingEmail" name="account_billingEmail" type="text" placeholder="Billing Email *" class="form-control" required="">
+                                                                                                    </div>
+                                                                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Corporate Address</h4>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="account_streetAddress" name="account_streetAddress" type="text" placeholder="Street Address *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="account_city" name="account_city" type="text" placeholder="City *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="account_state" name="account_state" type="text" placeholder="State *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="account_country" name="account_country" type="text" placeholder="Country *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <input id="account_zipcode" name="account_zipcode" type="text" placeholder="Zipcode" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Admin Details</h4>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="account_ad_name" name="account_ad_name" type="text" placeholder="Name *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input id="account_ad_email" name="account_ad_email" type="text" placeholder="Email *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="account_ad_username" name="account_ad_username" type="text" placeholder="Username *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                        <input id="account_ad_password" name="account_ad_password" type="password" placeholder="Password *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group col-lg-12">
+                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                        <input id="account_ad_cfmpassword" name="account_ad_cfmpassword" type="password" placeholder="Confirm Password *" class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-default btnGreen">Submit</button>
+                                        <button type="reset" onclick="showSection('#accountList')" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
