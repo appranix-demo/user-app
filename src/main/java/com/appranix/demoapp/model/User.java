@@ -58,13 +58,11 @@ public class User {
     /**
      * The name of user.
      */
-    @NotNull
     private String address;
 
     /**
      * The first name of user.
      */
-    @NotNull
     private String firstName;
 
     /**
