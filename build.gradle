@@ -48,7 +48,7 @@ dependencies {
 
 sonarqube {
     properties {
-        property "sonar.host.url", System.getenv('SONAR_URL')
+        property "sonar.host.url", System.getenv('SONAR_URL') + "/api"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.projectName", "$project.name"
         property "sonar.projectKey", "$project.group:$project.name"
