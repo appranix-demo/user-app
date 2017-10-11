@@ -8,6 +8,7 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath 'io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE'
+                classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 	}
 }
 
@@ -16,12 +17,15 @@ apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
+apply plugin: "org.sonarqube"
 
 war {
 	baseName = 'userapp'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+version System.getenv('GO_PIPELINE_LABEL')
 
 repositories {
 	mavenCentral()
@@ -40,4 +44,17 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+sonarqube {
+    properties {
+        property "sonar.host.url", System.getenv('SONAR_URL')
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.projectName", "$project.name"
+        property "sonar.projectKey", "$project.group:$project.name"
+        property "sonar.projectBaseDir","$project.projectDir"
+        property "sonar.working.directory","$project.buildDir/sonar"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+        property "sonar.analysis.mode", "publish"
+    }
 }
