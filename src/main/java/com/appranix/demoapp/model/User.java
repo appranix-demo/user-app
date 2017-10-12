@@ -64,6 +64,7 @@ public class User {
     /**
      * The first name of user.
      */
+    @NotNull
     private String firstName;
 
     /**
