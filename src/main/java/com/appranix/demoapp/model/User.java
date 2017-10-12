@@ -58,6 +58,7 @@ public class User {
     /**
      * The name of user.
      */
+    @NotNull
     private String address;
 
     /**
