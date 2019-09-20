@@ -20,13 +20,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DemoappApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = null;
-        try {
-            context = SpringApplication.run(DemoappApplication.class, args);
-        } finally {
-            if (context != null) {
-                context.close();
-            }
-        }
+        SpringApplication.run(DemoappApplication.class, args);
     }
 }

@@ -79,6 +79,7 @@ public class UserController implements ApiController {
         try {
         	return userService.create(user);
         } catch (Exception e) {
+            e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         }
         return null;

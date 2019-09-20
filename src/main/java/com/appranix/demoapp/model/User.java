@@ -1,8 +1,6 @@
 package com.appranix.demoapp.model;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -58,13 +56,11 @@ public class User {
     /**
      * The name of user.
      */
-    @NotNull
     private String address;
 
     /**
      * The first name of user.
      */
-    @NotNull
     private String firstName;
 
     /**

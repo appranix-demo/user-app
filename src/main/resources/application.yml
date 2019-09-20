@@ -1,25 +1,16 @@
-spring:
-  profiles.active: default
----
-spring:
-  profiles: default
   # Datasource Configuration
 spring.datasource:
-    driverClassName: org.postgresql.Driver
-    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_POSTGRES_PORT:5432}/${DB_POSTGRES_DB:userappdb}?currentSchema=${DB_POSTGRES_SCHEMA:public}"
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: "jdbc:sqlserver://${DB_HOST:localhost}:${DB_POSTGRES_PORT:5432};databaseName=${DB_POSTGRES_DB:userappdb}"
     username: ${DB_POSTGRES_USER:postgres}
     password: ${DB_POSTGRES_PASSWORD:password}
 spring.jpa:
-        # Specify the DBMS
-        database: PostgreSQL
         # Show or not log for each sql query
         show-sql: false
         # Hibernate settings are prefixed with spring.jpa.hibernate.*
         hibernate:
             ddl-auto: validate # validate | update | create | create-drop
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
-            show_sql: false
+            dialect: org.hibernate.dialect.SQLServer2017Dialect
             format_sql: true
 ---
 
